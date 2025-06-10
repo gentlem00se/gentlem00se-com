@@ -27,8 +27,8 @@ jobs:
       with:
         args: --delete
       env:
-        AWS_S3_BUCKET: ${{ env.BUCKET }}
+        AWS_S3_BUCKET: gentlem00se.com
         AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.ACCESS_KEY_SECRET }}
-        AWS_REGION: ${{ env.REGION }}
+        AWS_REGION: us-east-1
         SOURCE_DIR: ./public
