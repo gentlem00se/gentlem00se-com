@@ -9,11 +9,11 @@
     <lastBuildDate>Mon, 09 Jun 2025 16:29:06 -0600</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/htb-walkthroughs/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hackthebox - Mirai (Easy) Walkthrough</title>
+      <title>Hack the Box - Mirai (Easy) Walkthrough</title>
       <link>http://localhost:1313/posts/htb-mirai-walkthrough/</link>
       <pubDate>Mon, 09 Jun 2025 16:29:06 -0600</pubDate>
       <guid>http://localhost:1313/posts/htb-mirai-walkthrough/</guid>
-      <description>&lt;figure style=&#34;display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;http://localhost:1313/posts/mirai-htb-walkthrough/Mirai.png&#34; alt=&#34;Mirai HTB Walkthrough&#34; loading=&#34;lazy&#34; style=&#34;max-width:100%;height:auto;display:block;margin:0 auto;&#34; /&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/figure&gt; &#xA;&lt;p&gt;Let&amp;rsquo;s get started by adding some hostnames for the box for easier use. I always add &lt;code&gt;boxname&lt;/code&gt; as well as &lt;code&gt;boxname.htb&lt;/code&gt; to start with.&lt;/p&gt;&#xA;&#xD;&#xA;&lt;figure style=&#34;display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;http://localhost:1313/posts/mirai-htb-walkthrough/hosts.png&#34; alt=&#34;Adding Mirai to Hosts&#34; loading=&#34;lazy&#34; style=&#34;max-width:100%;height:auto;display:block;margin:0 auto;&#34; /&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/figure&gt; &#xA;&lt;p&gt;Next, we run an nmap scan to get a basic topography of what is going on on the box.&lt;/p&gt;</description>
+      <description>Box Info Box Name: Mirai&#xA;Listed Difficulty Rating: Easy&#xA;gentlem00se&amp;rsquo;s Difficulty Rating: Very Easy&#xA;Release Date: 2017 Tech Stack: Pi-hole, SSH, DNS&#xA;Skills Learned: Default credentials, sudo abuse, file recovery via strings&#xA;Recon Let&amp;rsquo;s get started by adding some hostnames for the box for easier use. I always add boxname as well as boxname.htb to start with.&#xA;Next, we run an nmap scan to get a basic topography of what is going on on the box.</description>
     </item>
   </channel>
 </rss>

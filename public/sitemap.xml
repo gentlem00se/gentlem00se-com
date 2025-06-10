@@ -5,10 +5,10 @@
     <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-06-09T16:29:06-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/hackthebox/</loc>
+    <loc>http://localhost:1313/posts/htb-mirai-walkthrough/</loc>
     <lastmod>2025-06-09T16:29:06-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/htb-mirai-walkthrough/</loc>
+    <loc>http://localhost:1313/categories/hackthebox/</loc>
     <lastmod>2025-06-09T16:29:06-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/htb-easy/</loc>
