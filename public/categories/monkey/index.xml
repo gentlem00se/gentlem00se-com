@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monkey on My New Hugo Site</title>
+    <link>http://localhost:1313/categories/monkey/</link>
+    <description>Recent content in Monkey on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Jun 2025 16:48:37 -0600</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/monkey/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Another One</title>
+      <link>http://localhost:1313/posts/another-one/</link>
+      <pubDate>Mon, 09 Jun 2025 16:48:37 -0600</pubDate>
+      <guid>http://localhost:1313/posts/another-one/</guid>
+      <description>&lt;p&gt;There once was an old lady who lived in a shoe.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

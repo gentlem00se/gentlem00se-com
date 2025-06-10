@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  <ul class="section-list">
+    {{ range .Pages }}
+      <li class="section-item">
+        <a href="{{ .RelPermalink }}" class="section-link">{{ .Title }}</a>
+      </li>
+    {{ else }}
+      <li>No pages found in this section.</li>
+    {{ end }}
+  </ul>
+{{ end }} 

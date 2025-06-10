@@ -1,0 +1,10 @@
+{{/*
+Shortcode: note
+Usage: {{< note >}}Your note text here{{< /note >}}
+*/}}
+<div style="background: #34505e; color: #fff; border-radius: 10px; padding: 1em 1.5em; margin: 1.5em 0; font-size: 1.1em; position: relative;">
+  <span style="position: absolute; left: 1em; top: 1em; font-size: 1.3em;">❗</span>
+  <div style="margin-left: 2.2em;">
+    {{ .Inner }}
+  </div>
+</div> 

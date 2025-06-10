@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Walkthroughs on My New Hugo Site</title>
+    <link>http://localhost:1313/categories/walkthroughs/</link>
+    <description>Recent content in Walkthroughs on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Jun 2025 16:29:06 -0600</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/walkthroughs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hackthebox - Mirai (Easy) Walkthrough</title>
+      <link>http://localhost:1313/posts/htb-mirai-walkthrough/</link>
+      <pubDate>Mon, 09 Jun 2025 16:29:06 -0600</pubDate>
+      <guid>http://localhost:1313/posts/htb-mirai-walkthrough/</guid>
+      <description>&lt;figure style=&#34;display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;http://localhost:1313/posts/mirai-htb-walkthrough/Mirai.png&#34; alt=&#34;Mirai HTB Walkthrough&#34; loading=&#34;lazy&#34; style=&#34;max-width:100%;height:auto;display:block;margin:0 auto;&#34; /&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/figure&gt; &#xA;&lt;p&gt;Let&amp;rsquo;s get started by adding some hostnames for the box for easier use. I always add &lt;code&gt;boxname&lt;/code&gt; as well as &lt;code&gt;boxname.htb&lt;/code&gt; to start with.&lt;/p&gt;&#xA;&#xD;&#xA;&lt;figure style=&#34;display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;&#34;&gt;&#xD;&#xA;  &lt;img src=&#34;http://localhost:1313/posts/mirai-htb-walkthrough/hosts.png&#34; alt=&#34;Adding Mirai to Hosts&#34; loading=&#34;lazy&#34; style=&#34;max-width:100%;height:auto;display:block;margin:0 auto;&#34; /&gt;&#xD;&#xA;  &#xD;&#xA;&lt;/figure&gt; &#xA;&lt;p&gt;Next, we run an nmap scan to get a basic topography of what is going on on the box.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

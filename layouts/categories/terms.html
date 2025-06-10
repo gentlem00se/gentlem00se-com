@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <h1 class="word-cloud-title">Categories</h1>
+  <div class="word-cloud">
+    {{ $minSize := 1.2 }}
+    {{ $maxSize := 3.2 }}
+    {{ $maxCount := 0 }}
+    {{ range $key, $val := .Site.Taxonomies.categories }}
+      {{ if gt (len $val.Pages) $maxCount }}
+        {{ $maxCount = (len $val.Pages) }}
+      {{ end }}
+    {{ end }}
+    {{ range $key, $val := .Site.Taxonomies.categories }}
+      {{ $size := add $minSize (mul (div (float (len $val.Pages)) (float $maxCount)) (sub $maxSize $minSize)) }}
+      <a href="{{ (index $val.Pages 0).Page.RelPermalink | relURL }}" class="word-cloud-item" style='font-size:{{ printf "%.2f" $size }}rem'>{{ $key }}</a>
+    {{ end }}
+  </div>
+{{ end }} 

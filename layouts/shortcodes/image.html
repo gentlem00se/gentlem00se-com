@@ -1,0 +1,10 @@
+{{/*
+Shortcode: image
+Usage: {{< image src="/posts/mirai-htb-walkthrough/Mirai.png" alt="Mirai HTB Walkthrough" caption="Optional caption here" >}}
+*/}}
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="{{ .Get "src" }}" alt="{{ .Get "alt" }}" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  {{ with .Get "caption" }}
+    <figcaption style="text-align: center;">{{ . }}</figcaption>
+  {{ end }}
+</figure> 

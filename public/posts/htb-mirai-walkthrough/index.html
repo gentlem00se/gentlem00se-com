@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hack the Box - Mirai (Easy) Walkthrough</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .navbar-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .logo-full {
+      display: block;
+      margin: 2rem auto 0.5rem auto;
+      max-width: 720px;
+      height: 256px;
+      object-fit: contain;
+    }
+    nav.navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .navbar-link {
+      color: #eaeaea;
+      font-size: 1.1rem;
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .navbar-link:hover {
+      color: #6ec1e4;
+    }
+    .navbar-logo-text {
+      height: 2.2rem;
+      width: auto;
+      display: block;
+    }
+    @media (max-width: 600px) {
+      .logo-full { max-width: 120px; height: 40px; }
+      nav.navbar { gap: 1.2rem; }
+      .navbar-logo-text { height: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar-container">
+    <a href="/">
+      <img src="/logofull.png" alt="gentlem00se full logo" class="logo-full" />
+    </a>
+    <nav class="navbar">
+      <a href="/" class="navbar-link">Home</a>
+      <a href="/categories/" class="navbar-link">Categories</a>
+      <a href="/about/" class="navbar-link">About</a>
+    </nav>
+  </div>
+  <div class="center-container">
+    
+  <article class="post-article">
+    <h1>Hack the Box - Mirai (Easy) Walkthrough</h1>
+    <div class="page-content">
+      <p><a href="https://app.hackthebox.com/machines/64">
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/Mirai.png" alt="Mirai HTB Walkthrough" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> </a></p>
+<h3 id="box-info">Box Info</h3>
+<p><strong>Box Name:</strong> Mirai<br>
+<strong>Listed Difficulty Rating:</strong> Easy<br>
+<strong>gentlem00se&rsquo;s Difficulty Rating:</strong> Very Easy<br>
+<strong>Release Date:</strong> 2017 <br>
+<strong>Tech Stack:</strong> Pi-hole, SSH, DNS<br>
+<strong>Skills Learned:</strong> Default credentials, sudo abuse, file recovery via strings</p>
+<h3 id="recon">Recon</h3>
+<p>Let&rsquo;s get started by adding some hostnames for the box for easier use. I always add <code>boxname</code> as well as <code>boxname.htb</code> to start with.</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/hosts.png" alt="Adding Mirai to Hosts" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<p>Next, we run an nmap scan to get a basic topography of what is going on on the box.</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/nmapscan.png" alt="Nmap Scan Results" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<p>The nmap scan gives us a bunch of information. We can ssh into the box if we get credentials. The server is hosting DNS, so we may be able to extract some info about subdomains or alternate hostnames for the box there. Also, there&rsquo;s a website.</p>
+<p>Let&rsquo;s start with the website and see what is going on there.</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/web.png" alt="Index of the web site" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<p>We appear to be getting blocked right at the root page. However, this is a goldmine of information. We can see right away that this is running <a href="https://pi-hole.net/">Pi-hole</a>, the custom DNS that assists with ad blocking and typically runs on a Raspberry Pi.</p>
+<p>Even better, it&rsquo;s giving us a version number - Pi-hole v3.1.4.</p>
+<h3 id="initial-foothold">Initial Foothold</h3>
+<p>Looking up that version in the <a href="https://github.com/pi-hole/pi-hole">Github repo</a>, we see that the current version is v6.1.2:</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/pihole-current-version.png" alt="Current Pi-hole version" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<p>So this version of Pi-hole is quite old. We can confirm this by using the tags to find v3.1.4:</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/pihole-3.1.4-dates.png" alt="Current Pi-hole version" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<p>That version is about 8 years old (i.e. it was released around 2017, which makes sense, as that is when the box was originally put up on Hack the Box).</p>
+<p>One of the most popular Raspberry Pi operating systems is Raspberry Pi OS, formerly known as Raspbian. For a long time Raspbian used a set of default credentials for login (see <a href="https://raspberryexpert.com/raspberry-pi-default-login-password/">this article</a> about it). Raspberry Pi OS now has the user set a password rather than having a default, but this box is old enough that there may still have been default credentials at the time.</p>
+<p>From the linked article, we can see that the default credentials for Raspbian are <code>pi:raspberry</code>. Let&rsquo;s give it a shot.</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/ssh-login.png" alt="Nmap Scan Results" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<p>Sure enough, we&rsquo;re in on the box. Furthermore, in the Desktop folder, we find <code>user.txt</code>:</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/user.txt.png" alt="Getting User.txt" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<h3 id="privilege-escalation">Privilege Escalation</h3>
+<p>The first thing I always do after getting SSH access for a user is check their Sudo permissions to see if they can run anything with no password (or anything at all, if I have the user&rsquo;s password). Let&rsquo;s check that for the pi user with <code>sudo -l</code>.</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/sudo-perms.png" alt="pi user&#39;s Sudo permissions" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<p>We appear to have hit the jackpot since not only can <code>pi</code> run anything as any user via sudo, but it also can run anything as any user <em>without a password.</em></p>
+<p>It seems too good to be true until we use <code>sudo su</code> and find ourselves in a root shell on the box. However, there&rsquo;s a snag when we go to grab <code>root.txt</code>:</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/missing-root.txt.png" alt="Root.txt is missing" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<h3 id="forensics">Forensics</h3>
+<p>The note mentions that there&rsquo;s a backup on the USB. When a USB drive is connected to a linux machine, it shows up in the <code>/media/</code> folder. Navigating there we see that there&rsquo;s a USB stick there, as well as a note in damnit.txt:</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/usbstick.png" alt="Usbstick contents" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<p>Damn it, indeed, James. Looking in <code>lost+found</code> just to see if it was hidden there (<code>lost+found</code> is an <code>ext</code> filesystem directory for recovered files or file fragments after a filesystem check), we see that it&rsquo;s not there.</p>
+<p>However, James&rsquo; note gives us a clue - is there any way to recover deleted files? When a file is deleted, the operating system doesn&rsquo;t actually take the time to scrub the parts of the storage device that hosted the file. Instead, it just deletes the filesystem link to that file, which means it no longer is referenced in the filesystem metadata, and your operating system can&rsquo;t see it or find it. However, the data is still stored on the device until those memory addresses are reused and overwritten with something else.</p>
+<p>Furthermore - everything on Linux is a file. With the <code>mount</code> command we can see all the currently mounted filesystems. Sure enough, we can see that <code>/dev/sdb</code> is the block device for the USB stick, and it is currently mounted at <code>/media/usbstick</code>.</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/mount.png" alt="Results of mount command" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<p>The <code>strings</code> command looks for all data in a file that appears to be a string. As we discussed earlier, everything is essentially a file on Linux, and we can reference the block device the same way as any other file. If we run <code>strings</code> on the block device <code>/dev/sdb</code>, it should look through all of memory on the USB stick for strings, because by accessing <code>/dev/sdb</code>, we are actually accessing the raw storage medium of the device, not just the filesystem metadata. With any luck, we&rsquo;ll find <code>root.txt</code>.</p>
+<p>Sure enough, we&rsquo;ve got it, and with that, we&rsquo;ve Hacked this Box.</p>
+
+<figure style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+  <img src="/posts/mirai-htb-walkthrough/strings-dev-sdb.png" alt="Strings output of /dev/sdb" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto;" />
+  
+</figure> 
+<h3 id="closing-the-vulnerability">Closing the Vulnerability</h3>
+<ul>
+<li>When designing software, never include default credentials. Always have the user set their own credentials where possible.</li>
+<li>On systems that do use default credentials, change the password immediately after logging in for the first time.</li>
+<li>Restrict overly-broad sudo permissions for users.</li>
+</ul>
+<h3 id="key-penetration-testing-takeaways">Key Penetration Testing Takeaways</h3>
+<ul>
+<li>Check version numbers, and look up information about identified versions</li>
+<li>Sometimes the simple answer is the right one.</li>
+<li><code>strings</code> is a more powerful tool than it may seem at first glance.</li>
+<li><code>sudo -l</code> is an essential first step for privilege escalation on Linux machines.</li>
+</ul>
+
+    </div>
+  </article>
+
+  </div>
+</body>
+</html> 
