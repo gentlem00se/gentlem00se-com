@@ -2,7 +2,7 @@
 title: "Hack the Box - Mirai (Easy) Walkthrough"
 date: 2025-06-09T16:29:06-06:00
 draft: false
-categories: ["htb-walkthroughs", "walkthroughs", "tutorials", "hackthebox"]
+categories: ["htb-walkthroughs", "htb-easy"]
 tags: ["htb-easy"]
 ---
 
