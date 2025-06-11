@@ -1,3 +1,4 @@
 content/posts/unpublished/*
 public/*
 .hugo_build.lock
+static/posts/unpublished/*
