@@ -1,0 +1,12 @@
+{{/*
+    Shortcode: linkimage
+    Usage: {{< linkimage src="/posts/mirai-htb-walkthrough/Mirai.png" link="https://www.duckduckgo.com" width="100" height="100" alt="Mirai HTB Walkthrough" caption="Optional caption here" >}}
+    */}}
+    <figure style="display: inline-flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 8px 8px 0;">
+      <a href="{{ .Get "link" }}" target="_blank">
+        <img src="{{ .Get "src" }}" alt="{{ .Get "alt" }}" loading="lazy" style="max-width:100%;height:auto;display:block;margin:0 auto; width: {{ .Get "width" }}; height: {{ .Get "height" }};" />
+      </a>
+      {{ with .Get "caption" }}
+        <figcaption style="text-align: center;">{{ . }}</figcaption>
+      {{ end }}
+    </figure> 

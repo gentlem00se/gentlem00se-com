@@ -24,3 +24,7 @@ I'm the guy who uses the moniker gentlem00se. I'm a human being living on the pl
 **Why gentlem00se?**
 
 ......why not gentlem00se?
+
+
+Find me at:
+{{< linkimage src="/social/htb.png" link="https://app.hackthebox.com/profile/1136597" width="50px" height="50px" alt="Hack The Box" >}}{{< linkimage src="/social/gh.png" width="50px" height="50px" link="https://github.com/gentlem00se" alt="Github" >}}{{< linkimage src="/social/bluesky.png" width="50px" height="50px" link="https://bsky.app/profile/gentlem00se.bsky.social" alt="Bluesky" >}}
