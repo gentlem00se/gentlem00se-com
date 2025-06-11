@@ -12,13 +12,7 @@ Not that I talk about my employer much (or at all) on here, but my views don't r
 
 **Who am I?**
 
-I'm a developer, security engineer, tinkerer, and digital explorer passionate about technology, AI, hardware, making the world a good place for everyone, and learning new things. This site is where I share what I discover, build, and enjoy.
-
-I hope you enjoy the content, and thanks for visiting! 
-
-**Who are you really though?**
-
-I'm the guy who uses the moniker gentlem00se. I'm a human being living on the planet Earth. I am definitely not an alien, robot, or hologram.
+gentlem00se is the online moniker of professional product security engineer [Chase Davies](https://github.com/chasepd) for security related stuff.
 
 
 **Why gentlem00se?**
